@@ -31,12 +31,16 @@ class FeedTabScreen extends Component {
   }
 
   render() {
-    if (this.props.feed.movies.length === 0) {
+    if (this.props.feed.isLoading) {
       return (
         <View>
           <LoadingView />
         </View>
       );
+    }
+
+    else if (this.props.feed.err) {
+      Alert.alert("Oh Oh, there was a terrible error...", JSON.stringify(this.props.feed.err))
     }
 
     return (
