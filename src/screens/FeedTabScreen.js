@@ -36,6 +36,7 @@ class FeedTabScreen extends Component {
         {this.props.feed.movies.length === 0 ? <LoadingView /> :
           <MovieView
             movie={this.props.feed.movies[this.state.showedMovieIndex]}
+            user={this.props.app.userId}
           />
         }
       </View>
@@ -61,9 +62,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return {
-    feed: state.feed,
-  }
+  return state;
 }
 
 export default connect(mapStateToProps)(FeedTabScreen);

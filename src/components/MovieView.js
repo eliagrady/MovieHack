@@ -25,6 +25,7 @@ export default class MovieView extends Component {
     return (
       <SwipeView style={styles.card}>
         <Text>{this.props.movie.title}</Text>
+        <Text>{this.props.user}</Text>
       </SwipeView>
     );
   }

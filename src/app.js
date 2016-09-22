@@ -12,7 +12,8 @@ import thunk from 'redux-thunk';
 import * as reducers from './reducers';
 import {registerScreens} from './screens';
 import { AsyncStorage } from 'react-native';
-import { uuid } from 'uuid';
+
+import * as appActions from './reducers/app/actions';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -22,17 +23,7 @@ registerScreens(store, Provider);
 
 export default class App {
   constructor() {
-    store.appDidLoad = false;
-    AsyncStorage.getItem('userKey').then((userId) => {
-      if(uuid) {
-        store.userKey = userId;
-        store.isUserNew = false;
-      }
-      else {
-        store.userKey = uuid.v4();
-        store.isUserNew = true;
-      }
-    })
+    store.dispatch(appActions.appInitializedAction())
   }
 
   startApp() {
