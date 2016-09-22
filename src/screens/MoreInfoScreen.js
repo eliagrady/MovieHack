@@ -46,18 +46,28 @@ class MoreInfoScreen extends Component {
           <View style={{ height: 300, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           </View>
         )}>
-        <View style={{ height: 500 }}>
-          <Text>
-            Scroll me
-            Scroll me
-            Scroll meScroll me
-            Scroll meScroll meScroll meScroll meScroll meScroll me
-            Scroll me
-            Scroll me
-            Scroll me
-            Scroll me
-
-          </Text>
+        <View>
+          <View style={styles.title}>
+            <Text style={styles.titleText}>
+              {movie.title}
+            </Text>
+          </View>
+          <View style={{
+            marginHorizontal: 30
+          }}>
+            <Text style={styles.detailHeadline}>
+              DESCRIPTION
+            </Text>
+            <Text style={styles.detailText}>
+              {movie.synopsis}
+            </Text>
+            <Text style={styles.detailHeadline}>
+              MOVIE LENGTH
+            </Text>
+            <Text style={styles.detailText}>
+              {movie.runtime}
+            </Text>
+          </View>
         </View>
       </ParallaxScrollView>
   );
