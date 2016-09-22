@@ -78,15 +78,32 @@ class MoreInfoScreen extends Component {
             </Text>
             <View style={{
               flexDirection: 'row',
+              justifyContent: 'space-between'
             }}>
+              <View style={{
+                flexDirection: 'row'
+              }}>
               {durationBarValues.map((value, i) => <View key={i} style={{
-                width: 20 * value,
+                width: 40 * value,
                 marginRight: 5,
                 backgroundColor: colors.yellow
               }} />)}
+              </View>
               <Text style={styles.detailText}>
                 {movie.runtime} minutes
               </Text>
+            </View>
+            <Text style={styles.detailHeadline}>
+              CAST
+            </Text>
+            <View>
+              {movie.abridged_cast.map((actor, i) => <View key={`actor${i}`}>
+                <Text style={styles.detailText}>
+                  <Text style={{ fontWeight: 'bold' }}>{actor.name}</Text>
+                  <Text> as </Text>
+                  <Text style={{ fontWeight: 'bold' }}>{actor.characters[0]}</Text>
+                </Text>
+              </View>)}
             </View>
           </View>
         </View>
