@@ -52,12 +52,11 @@ export default class MovieView extends Component {
       </SwipeView>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
   card: {
-    height: height-209,
+    height: height-209,//Nav bar offset
     margin: 48,
     marginLeft: 24,
     marginRight: 24,

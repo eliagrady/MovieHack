@@ -17,7 +17,9 @@ import {connect} from 'react-redux';
 import * as feedActions from '../reducers/feed/actions';
 import _ from 'lodash';
 
+
 const {height, width} = Dimensions.get('window');
+
 
 class FeedTabScreen extends Component {
   constructor(props) {
@@ -42,7 +44,7 @@ class FeedTabScreen extends Component {
         <View>
           <LoadingView />
         </View>
-      )
+      );
     }
 
     else if (this.props.feed.err) {

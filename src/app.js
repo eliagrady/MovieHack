@@ -54,13 +54,14 @@ export default class App {
 }
 
 const darkNavigatorStyle = {
-  // drawUnderNavBar: true,
-  // navBarTranslucent: true,
+
   navBarTextColor: '#f7f7f7',
-  navBarBackgroundColor: '#800606',
-}
+
+  navBarBackgroundColor: '#303030',
+
+};
 
 const darkTabBarStyle = {
   tabBarBackgroundColor: '#303030',
-  tabBarSelectedButtonColor: '#b50008'
-}
+  statusBarTextColorScheme: 'light'
+};
