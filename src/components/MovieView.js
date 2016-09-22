@@ -29,9 +29,9 @@ export default class MovieView extends Component {
 
   render() {
     return (
-      <SwipeView changeOpacity removeViewOnSwipedOut style={styles.card}>
+      <SwipeView style={styles.card}>
         {/* Movie Title */}
-        <Text style={{marginBottom: 12, color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
+        <Text style={{color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
         <Image
           style={styles.cardImage}
           source={{uri: `${config.TMDB_POSTER_BASE}${this.props.movie.poster_path}`}}
@@ -39,16 +39,15 @@ export default class MovieView extends Component {
       </SwipeView>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
   card: {
-    height: height-209,
+    height: height-209,//Nav bar offset
     margin: 48,
     marginLeft: 24,
     marginRight: 24,
-    padding: 24,
+    padding: 0,
     backgroundColor: "#303030"
   },
   cardImage: {
