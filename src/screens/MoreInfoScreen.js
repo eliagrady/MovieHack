@@ -67,6 +67,12 @@ class MoreInfoScreen extends Component {
             <Text style={styles.detailText}>
               {movie.synopsis}
             </Text>
+            <Text style={styles.detailHeadline}>
+              MOVIE LENGTH
+            </Text>
+            <Text style={styles.detailText}>
+              {movie.runtime}
+            </Text>
           </View>
         </View>
       </ParallaxScrollView>
