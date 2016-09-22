@@ -22,7 +22,7 @@ class FeedTabScreen extends Component {
     super(props);
 
     this.state = {
-      showedMovieIndex: 0,
+
     };
   }
 
@@ -31,25 +31,36 @@ class FeedTabScreen extends Component {
   }
 
   render() {
+    if (this.props.feed.movies.length === 0) {
+      return (
+        <View>
+          <LoadingView />
+        </View>
+      );
+    }
+
     return (
-      <View style={styles.container}>
-        {this.props.feed.movies.length === 0 ? <LoadingView /> :
-          <MovieView
-            movie={this.props.feed.movies[this.state.showedMovieIndex]}
-            user={this.props.app.userId}
-          />
+      <ScrollView style={styles.container} pagingEnabled={true}>
+        {
+          _.map(this.props.feed.movies, (movie) => {
+            return (
+              <MovieView
+                key={movie.id}
+                movie={movie}
+              />
+            );
+          })
+
         }
-      </View>
+
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#505050',
-
-    color: '#fafafa',
   },
   welcome: {
     fontSize: 20,

@@ -6,8 +6,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  Platform
+  Platform,
+  Dimensions,
 } from 'react-native';
+
+const {height, width} = Dimensions.get('window')
 
 import {SwipeView} from 'react-native-swipe-view';
 
@@ -33,7 +36,7 @@ export default class MovieView extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    height: 70*height/100,
     margin: 48,
     marginLeft: 24,
     marginRight: 24,
