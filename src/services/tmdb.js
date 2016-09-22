@@ -37,3 +37,18 @@ export const fetchYouTubeTrailerUrl = async function(videoId) {
   }
   return videoTrailerUrl;
 };
+
+export const fetchVideoDetails = async function(videoId) {
+  const response = await fetch(`${config.TMDB_DETAILS_FUNC(videoId)}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  if (!response.ok) {
+    throw new Error("Couldn't fetch Trailers");
+  }
+  return await response.json();
+};
+
+
