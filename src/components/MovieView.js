@@ -23,11 +23,9 @@ export default class MovieView extends Component {
 
   render() {
     return (
-      <View>
-        <SwipeView style={{backgroundColor: 'red'}}>
-          <Text>Hello</Text>
-        </SwipeView>
-      </View>
+      <SwipeView style={styles.card}>
+        <Text>{this.props.movie.title}</Text>
+      </SwipeView>
     );
   }
 
@@ -35,6 +33,11 @@ export default class MovieView extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'red',
+    flex: 1,
+    margin: 48,
+    marginLeft: 24,
+    marginRight: 24,
+    padding: 24,
+    backgroundColor: "#6d8efa"
   }
 });

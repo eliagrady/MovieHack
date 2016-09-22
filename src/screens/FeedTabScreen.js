@@ -34,11 +34,9 @@ class FeedTabScreen extends Component {
     return (
       <View style={styles.container}>
         {this.props.feed.movies.length === 0 ? <LoadingView /> :
-          <View>
-            <MovieView
-              movie={this.props.feed.movies[this.state.showedMovieIndex]}
-            />
-          </View>
+          <MovieView
+            movie={this.props.feed.movies[this.state.showedMovieIndex]}
+          />
         }
       </View>
     );
