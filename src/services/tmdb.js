@@ -14,6 +14,6 @@ const fetchDiscoverMovies = async function fetchDiscoverMovies() {
   const movies = json.results;
 
   return movies;
-}
+};
 
 export default fetchDiscoverMovies;
