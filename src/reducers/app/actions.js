@@ -8,7 +8,6 @@ export function appInitializedAction() {
     const userId = await AsyncStorage.getItem('userId');
     if (userId) {
       dispatch({type: types.APP_INITIALIZED, userId: userId, isUserNew: false});
-      getStore().isUserNew = false;
     }
     else {
       const newUuid = uuid.v4();
