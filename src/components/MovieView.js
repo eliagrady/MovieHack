@@ -24,8 +24,7 @@ export default class MovieView extends Component {
   render() {
     return (
       <SwipeView style={styles.card}>
-        <Text>{this.props.movie.title}</Text>
-        <Text>{this.props.user}</Text>
+        <Text style={{color: '#fafafa',}}>{this.props.movie.title}</Text>
       </SwipeView>
     );
   }
@@ -39,6 +38,6 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     marginRight: 24,
     padding: 24,
-    backgroundColor: "#6d8efa"
+    backgroundColor: "#303030"
   }
 });

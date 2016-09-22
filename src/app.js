@@ -33,6 +33,8 @@ export default class App {
           label: 'Feed',
           screen: 'MovieHack.FeedTabScreen',
           title: 'Movies Feed',
+
+          navigatorStyle: darkNavigatorStyle,
         },
         {
           label: 'To Watch',
@@ -44,7 +46,20 @@ export default class App {
           screen: 'MovieHack.MoreInfoScreen',
           title: 'Movie Info',
         }
-      ]
+      ],
+      navigatorStyle: darkNavigatorStyle,
+      tabsStyle: darkTabBarStyle,
     });
   }
+}
+
+const darkNavigatorStyle = {
+
+
+  navBarTextColor: '#f7f7f7',
+  navBarBackgroundColor: '#303030'
+}
+
+const darkTabBarStyle = {
+  tabBarBackgroundColor: '#303030',
 }

@@ -47,7 +47,9 @@ class FeedTabScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#505050',
+
+    color: '#fafafa',
   },
   welcome: {
     fontSize: 20,
