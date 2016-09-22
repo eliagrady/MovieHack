@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 
 import MovieView from '../components/MovieView';
@@ -16,6 +17,7 @@ import {connect} from 'react-redux';
 import * as feedActions from '../reducers/feed/actions';
 import _ from 'lodash';
 
+const {height, width} = Dimensions.get('window');
 
 class FeedTabScreen extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class FeedTabScreen extends Component {
         <View>
           <LoadingView />
         </View>
-      );
+      )
     }
 
     else if (this.props.feed.err) {
@@ -44,7 +46,12 @@ class FeedTabScreen extends Component {
     }
 
     return (
-      <ScrollView style={styles.container} pagingEnabled={true}>
+      <ScrollView
+        style={styles.container}
+        pagingEnabled={true}
+        // contentInset={{top: 60}}
+        // contentOffset={{y: -60}}
+      >
         {
           _.map(this.props.feed.movies, (movie) => {
             return (

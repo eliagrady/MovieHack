@@ -54,8 +54,8 @@ export default class App {
 }
 
 const darkNavigatorStyle = {
-
-
+  // drawUnderNavBar: true,
+  // navBarTranslucent: true,
   navBarTextColor: '#f7f7f7',
   navBarBackgroundColor: '#303030'
 }
