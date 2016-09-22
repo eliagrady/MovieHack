@@ -31,6 +31,15 @@ export default function counter(state = initialState, action = {}) {
         }
       )
 
+    case types.MOVIE_INTERACTED:
+      const moviesClone = _.clone(state.movies)
+      _.pull(moviesClone, action.movie)
+      return state.merge(
+        {
+          movies: moviesClone,
+        }
+      )
+
     default:
       return state;
   }

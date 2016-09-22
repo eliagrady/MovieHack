@@ -57,9 +57,10 @@ const darkNavigatorStyle = {
   // drawUnderNavBar: true,
   // navBarTranslucent: true,
   navBarTextColor: '#f7f7f7',
-  navBarBackgroundColor: '#303030'
+  navBarBackgroundColor: '#800606',
 }
 
 const darkTabBarStyle = {
   tabBarBackgroundColor: '#303030',
+  tabBarSelectedButtonColor: '#b50008'
 }

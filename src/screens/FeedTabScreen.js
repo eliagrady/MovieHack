@@ -28,6 +28,10 @@ class FeedTabScreen extends Component {
     };
   }
 
+  movieSwiped(movie, userDidLike) {
+    this.props.dispatch(feedActions.movieInteraction(movie, userDidLike));
+  }
+
   componentDidMount() {
     this.props.dispatch(feedActions.fetchMoviesAction())
   }
@@ -58,6 +62,7 @@ class FeedTabScreen extends Component {
               <MovieView
                 key={movie.id}
                 movie={movie}
+                onSwipeEvent={(movie, userDidLike) => this.movieSwiped.bind(this)(movie, userDidLike)}
               />
             );
           })

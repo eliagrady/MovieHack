@@ -14,3 +14,10 @@ export function fetchMoviesAction() {
     }
   }
 }
+
+export function movieInteraction(movie, userDidLike) {
+  return async function(dispatch, getState) {
+    dispatch({type: types.MOVIE_INTERACTED, movie, userDidLike})
+    //TODO Here we should make a contact with the firebase
+  }
+}

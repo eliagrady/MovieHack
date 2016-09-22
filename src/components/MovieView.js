@@ -24,18 +24,31 @@ export default class MovieView extends Component {
   }
 
   static propTypes = {
-    movie: PropTypes.object
+    movie: PropTypes.object,
+    onSwipeEvent: PropTypes.func
   };
 
   render() {
     return (
-      <SwipeView changeOpacity removeViewOnSwipedOut style={styles.card}>
-        {/* Movie Title */}
-        <Text style={{marginBottom: 12, color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
-        <Image
-          style={styles.cardImage}
-          source={{uri: `${config.TMDB_POSTER_BASE}${this.props.movie.poster_path}`}}
-        />
+      <SwipeView
+        changeOpacity
+        style={styles.card}
+        onSwipedOut={(data) => {
+          if (data.nativeEvent.direction === 'right') {
+            this.props.onSwipeEvent(this.props.movie, true);
+          } else if (data.nativeEvent.direction === 'left') {
+            this.props.onSwipeEvent(this.props.movie, false);
+          }
+        }}
+      >
+        <View style={{flex: 1, padding: 24,}}>
+          {/* Movie Title */}
+          <Text style={{marginBottom: 12, color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
+          <Image
+            style={styles.cardImage}
+            source={{uri: `${config.TMDB_POSTER_BASE}${this.props.movie.poster_path}`}}
+          />
+        </View>
       </SwipeView>
     );
   }
@@ -48,8 +61,7 @@ const styles = StyleSheet.create({
     margin: 48,
     marginLeft: 24,
     marginRight: 24,
-    padding: 24,
-    backgroundColor: "#303030"
+    backgroundColor: "#303030",
   },
   cardImage: {
     flex: 1,
