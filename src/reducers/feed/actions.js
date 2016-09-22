@@ -1,11 +1,11 @@
 import * as types from './actionTypes';
 import fetchMovies from '../../services/boilerData';
-import fetchDiscoverMovies from '../../services/tmdb';
+import { fetchDiscoverMovies } from '../../services/tmdb';
 
 export function fetchMoviesAction() {
   return async function(dispatch, getState) {
     try {
-      dispatch({type: types.FETCH_MOVIES_LOADING})
+      dispatch({type: types.FETCH_MOVIES_LOADING});
       const movies = await fetchDiscoverMovies();
       dispatch({type: types.FETCH_MOVIES_LOADED, movies})
 
@@ -17,7 +17,7 @@ export function fetchMoviesAction() {
 
 export function movieInteraction(movie, userDidLike) {
   return async function(dispatch, getState) {
-    dispatch({type: types.MOVIE_INTERACTED, movie, userDidLike})
+    dispatch({type: types.MOVIE_INTERACTED, movie, userDidLike});
     //TODO Here we should make a contact with the firebase
   }
 }
