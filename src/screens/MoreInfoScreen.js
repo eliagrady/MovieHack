@@ -30,6 +30,7 @@ const STICKY_HEADER_HEIGHT = 70;
 
 class MoreInfoScreen extends Component {
   render() {
+    let numMovieDurationBars = parseFloat(movie.runtime) / 60
     return (
       <ParallaxScrollView
         backgroundColor="blue"
@@ -68,7 +69,7 @@ class MoreInfoScreen extends Component {
               {movie.synopsis}
             </Text>
             <Text style={styles.detailHeadline}>
-              MOVIE LENGTH
+              MOVIE DURATION
             </Text>
             <Text style={styles.detailText}>
               {movie.runtime}
@@ -76,7 +77,7 @@ class MoreInfoScreen extends Component {
           </View>
         </View>
       </ParallaxScrollView>
-  );
+    );
   }
 }
 
