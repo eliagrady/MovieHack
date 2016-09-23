@@ -42,6 +42,7 @@ class ToWatchTabScreen extends Component {
           _.map(this.props.toWatch.movies, (movie) => {
             return (
               <ToWatchView
+                navigator={this.props.navigator}
                 key={movie.id}
                 movie={movie}
               />

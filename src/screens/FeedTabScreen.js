@@ -65,6 +65,7 @@ class FeedTabScreen extends Component {
               <MovieView
                 key={movie.id}
                 movie={movie}
+                navigator={this.props.navigator}
                 onSwipeEvent={(movie, userDidLike) => this.movieSwiped.bind(this)(movie, userDidLike)}
               />
             );
