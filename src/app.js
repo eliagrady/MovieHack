@@ -44,13 +44,7 @@ export default class App {
           screen: 'MovieHack.ToWatchTabScreen',
           title: 'To Watch',
           navigatorStyle: darkNavigatorStyle,
-        },
-        {
-          label: 'Test More Info Movie',
-          screen: 'MovieHack.MoreInfoScreen',
-          title: 'Movie Info',
-
-          navigatorStyle: darkNavigatorStyle,
+          icon: require('../assets/icons/feed.png'),
         }
       ],
       navigatorStyle: darkNavigatorStyle,
