@@ -217,7 +217,7 @@ class MoreInfoScreen extends Component {
             </Text>}
             <ScrollView horizontal={true}
                         pagingEnabled={true}
-                        style={{ height: 200, width: posterWidth - 40  }}
+                        style={{ height: 200, width: posterWidth - 40, marginBottom: 30  }}
                         contentContainerStyle={[
                           { width: youtubeTrailers.length * (posterWidth - 40) }
                         ]}
@@ -225,7 +225,7 @@ class MoreInfoScreen extends Component {
               {youtubeTrailers.map(trailer => (
                 <WebView
                   key={trailer}
-                  style={{height: 200, marginBottom: 30}}
+                  style={{height: 200}}
                   javaScriptEnabled={true}
                   source={{uri: trailer}}
                 />
