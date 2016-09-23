@@ -24,7 +24,7 @@ export default function counter(state = initialState, action = {}) {
       });
 
     case types.FETCH_MOVIES_FAILED:
-      console.warn(action.err);
+      console.error(action.err);
       return state.merge(
         {
           err: action.err,

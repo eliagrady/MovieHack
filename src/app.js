@@ -47,6 +47,8 @@ export default class App {
           label: 'Test More Info Movie',
           screen: 'MovieHack.MoreInfoScreen',
           title: 'Movie Info',
+
+          navigatorStyle: darkNavigatorStyle,
         }
       ],
       navigatorStyle: darkNavigatorStyle,
@@ -57,7 +59,7 @@ export default class App {
 
 const darkNavigatorStyle = {
   navBarTextColor: '#f7f7f7', // change the text color of the title (remembered across pushes)
-  navBarBackgroundColor: '#303030', // change the background color of the nav bar (remembered across pushes)
+  navBarBackgroundColor: '#920009', // change the background color of the nav bar (remembered across pushes)
   navBarButtonColor: '#007aff', // change the button colors of the nav bar (eg. the back button) (remembered across pushes)
   navBarHidden: false, // make the nav bar hidden
   navBarHideOnScroll: false, // make the nav bar hidden only after the user starts to scroll
@@ -75,7 +77,7 @@ const darkNavigatorStyle = {
 };
 
 const darkTabBarStyle = {
-  tabBarBackgroundColor: '#303030',
+  tabBarBackgroundColor: '#000000',
   tabBarButtonColor: '#ccc',
   tabBarSelectedButtonColor: '#fff',
   statusBarTextColorScheme: 'light'

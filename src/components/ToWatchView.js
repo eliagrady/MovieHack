@@ -30,7 +30,7 @@ export default class MovieView extends Component {
 
   render() {
     return (
-      <View
+      <SwipeView
         style={styles.item}
       >
           <View style={{
@@ -61,7 +61,7 @@ export default class MovieView extends Component {
             style={styles.image}
             source={{uri: `${config.TMDB_POSTER_BASE}${this.props.movie.poster_path}`}}
           />
-      </View>
+      </SwipeView>
     );
   }
 }

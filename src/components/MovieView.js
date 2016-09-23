@@ -34,8 +34,6 @@ export default class MovieView extends Component {
   };
 
   componentDidUpdate(preProps, nowProps) {
-    // console.warn(preProps);
-    // console.warn(nowProps);
     this.state.bounceValue.setValue(1.2);
     Animated.spring(this.state.bounceValue, {
       toValue: 1,
@@ -57,7 +55,7 @@ export default class MovieView extends Component {
             }
           }}
         >
-          <View style={{flex: 1, padding: 24,position: 'relative', borderWidth: 1, }}>
+          <View style={{flex: 1, padding: 24,position: 'relative'}}>
             {/* Movie Title */}
             <Text style={{marginBottom: 12, color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
             <Image
@@ -79,6 +77,7 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     marginRight: 24,
     backgroundColor: "#303030",
+    borderRadius: 6,
   },
   cardImage: {
     flex: 1,

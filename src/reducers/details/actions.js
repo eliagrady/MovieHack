@@ -9,6 +9,7 @@ export function fetchMovieDetailsAction(movieId) {
       dispatch({type: types.FETCH_MOVIE_DETAILS_LOADED, details})
 
     } catch (err) {
+      console.error(err)
       dispatch({type: types.FETCH_MOVIE_DETAILS_FAILED, err})
     }
   }

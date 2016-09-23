@@ -38,7 +38,7 @@ export const fetchYouTubeTrailerUrl = async function(videoId) {
   return videoTrailerUrl;
 };
 
-export const fetchVideoDetails = async function(videoId) {
+export async function fetchVideoDetails(videoId) {
   const response = await fetch(`${config.TMDB_DETAILS_FUNC(videoId)}`, {
     method: 'get',
     headers: {
@@ -49,6 +49,5 @@ export const fetchVideoDetails = async function(videoId) {
     throw new Error("Couldn't fetch Trailers");
   }
   return await response.json();
-};
 
-
+}

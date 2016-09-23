@@ -24,14 +24,14 @@ export default class BinaryToolbar extends Component {
   }
 
   static propTypes = {
-    onClick: PropTypes.func
+
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.props.onClick(true)}><Image style={{width: 40, height: 50}} source={require('../../assets/dislike.png')} /></TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.onClick(false)}><Image style={{width: 40, height: 50}} source={require('../../assets/like.png')} /></TouchableOpacity>
+        <Image style={{width: 40, height: 50}} source={require('../../assets/dislike.png')} />
+        <Image style={{width: 40, height: 50}} source={require('../../assets/like.png')} />
       </View>
     );
   }
