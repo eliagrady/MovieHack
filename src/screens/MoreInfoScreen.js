@@ -118,7 +118,7 @@ class MoreInfoScreen extends Component {
                 flexDirection: 'row',
                 marginLeft: 30,
                 marginTop: 20,
-                marginBottom: 10
+                marginBottom: 2
               }}>
                 <Text style={styles.titleMeta}>{details.release_date.split('-')[0]}</Text>
                 <Text style={styles.titleMeta}>{details.runtime} mins</Text>
@@ -182,6 +182,32 @@ class MoreInfoScreen extends Component {
               <Text style={styles.detailText}>
               </Text>
             </View>
+            <View style={{
+              backgroundColor: '#2B2B2B',
+              alignItems: 'center',
+
+            }}>
+              <Text style={[styles.titleMeta, { paddingRight: 0, marginBottom: 0 }]}>
+                Average Rating
+              </Text>
+              <Text style={[styles.detailText, { marginLeft: 0, marginVertical: 0 }]}>{details.vote_average}</Text>
+              <Text style={[styles.titleMeta, { paddingRight: 0, marginTop: 2 }]}>
+                {details.vote_count}
+              </Text>
+            </View>
+            <Text style={{
+              color: colors.gray,
+              marginLeft: 0,
+              marginVertical: 15,
+              alignSelf: 'center',
+              fontSize: 15,
+              fontWeight: '700'
+            }}>
+              {`<<${details.tagline}>>`}
+            </Text>
+            <Text style={{ color: colors.gray, marginLeft: 0,  alignSelf: 'center', textAlign: 'center' }}>
+              {details.overview}
+            </Text>
           </View>
         </View>
       </ParallaxScrollView>
