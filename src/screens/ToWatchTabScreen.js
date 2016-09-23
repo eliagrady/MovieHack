@@ -10,25 +10,47 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-import * as feedActions from '../reducers/feed/actions';
+import * as toWatchActions from '../reducers/toWatch/actions';
 import _ from 'lodash';
+import LoadingView from '../components/LoadingView';
+import ToWatchView from '../components/ToWatchView';
 
 
 class ToWatchTabScreen extends Component {
+  componentDidMount() {
+    this.props.dispatch(toWatchActions.fetchMoviesAction())
+  }
+
   render() {
+    if (this.props.toWatch.isLoading) {
+      return (
+        <View>
+          <LoadingView />
+        </View>
+      );
+    }
+
+    else if (this.props.toWatch.err) {
+      Alert.alert("Oh Oh, there was a terrible error...", JSON.stringify(this.props.toWatch.err))
+    }
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <ScrollView
+        style={styles.container}
+      >
+        {
+          _.map(this.props.toWatch.movies, (movie) => {
+            return (
+              <ToWatchView
+                key={movie.id}
+                movie={movie}
+              />
+            );
+          })
+
+        }
+
+      </ScrollView>
     );
   }
 }
@@ -36,8 +58,6 @@ class ToWatchTabScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
