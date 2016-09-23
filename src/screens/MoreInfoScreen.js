@@ -11,42 +11,80 @@ import {
   Image
 } from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import * as detailsActions from '../reducers/details/actions';
 import {connect} from 'react-redux';
+import LoadingView from '../components/LoadingView';
 
-import { movies } from '../services/data.json';
-
-const movie = movies[0];
+import * as config from '../config';
 const colors = {
   red0: '#992820',
   red1: '#682825',
-  yellow: '#F2DCAB'
+  yellow: '#F2DCAB',
+  black: '#333333',
+  white: '#ffffff',
+  gray: '#C7C7C7',
+  pink: '#FD4482'
 }
 
 
 const posterWidth = Dimensions.get('window').width;
-const PARALLAX_HEADER_HEIGHT = 350;
+const PARALLAX_HEADER_HEIGHT = 300;
 const STICKY_HEADER_HEIGHT = 70;
+Number.prototype.formatMoney = function(c, d, t){
+  var n = this,
+    c = isNaN(c = Math.abs(c)) ? 2 : c,
+    d = d == undefined ? "." : d,
+    t = t == undefined ? "," : t,
+    s = n < 0 ? "-" : "",
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+    j = (j = i.length) > 3 ? j % 3 : 0;
+  return '$' + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
 
 
 class MoreInfoScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(detailsActions.fetchMovieDetailsAction(271110))
+  }
+
   render() {
-    let numMovieDurationBars = parseFloat(movie.runtime) / 60;
-    let durationBarValues = [];
-    while (numMovieDurationBars > 0) {
-      durationBarValues.push(Math.min(numMovieDurationBars, 1));
-      numMovieDurationBars -= 1;
+    if (!this.props.details || this.props.details.isLoading || !this.props.details.details) {
+      return (
+        <View>
+          <Text>{JSON.stringify(this.props.details)}</Text>
+          <LoadingView />
+        </View>
+      );
     }
+
+    let details = this.props.details.details;
+
     return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: colors.black
+        }}
+      >
       <ParallaxScrollView
-        backgroundColor="blue"
-        contentBackgroundColor={colors.red1}
-        parallaxHeaderHeight={300}
+        backgroundColor="#333333"
+        contentBackgroundColor={colors.black}
+        parallaxHeaderHeight={200}
         renderBackground={() => (
           <View key="background">
             <Image source={{
-              uri: 'http://image.tmdb.org/t/p/original/811DjJTon9gD6hZ8nCjSitaIXFQ.jpg',
+              uri: `${config.TMDB_POSTER_BASE}${details.backdrop_path}`,
               width: window.width,
-              height: PARALLAX_HEADER_HEIGHT}}/>
+              height: PARALLAX_HEADER_HEIGHT}}
+            />
             <View style={{position: 'absolute',
               top: 0,
               width: window.width,
@@ -60,22 +98,79 @@ class MoreInfoScreen extends Component {
         )}>
         <View>
           <View style={styles.title}>
-            <Text style={styles.titleText}>
-              {movie.title}
-            </Text>
+            <Image
+              source={{
+                uri: `${config.TMDB_POSTER_BASE}${details.poster_path}`,
+                width: 100,
+                height: 120
+              }}
+              style={{
+                position: 'absolute',
+                bottom: 10,
+                left: 20
+              }}
+            />
+            <View style={{
+              width: 100
+            }}/>
+            <View>
+              <View style={{
+                flexDirection: 'row',
+                marginLeft: 30,
+                marginTop: 20,
+                marginBottom: 10
+              }}>
+                <Text style={styles.titleMeta}>{details.release_date.split('-')[0]}</Text>
+                <Text style={styles.titleMeta}>{details.runtime} mins</Text>
+              </View>
+              <Text style={styles.titleText}>
+                {details.title}
+              </Text>
+            </View>
           </View>
           <View style={{
-            marginHorizontal: 30,
+            marginHorizontal: 20,
           }}>
-            <Text style={styles.detailHeadline}>
-              DESCRIPTION
-            </Text>
-            <Text style={styles.detailText}>
-              {movie.synopsis}
-            </Text>
-            <Text style={styles.detailHeadline}>
-              MOVIE DURATION
-            </Text>
+            <View style={{
+              flexDirection: 'row'
+            }}>
+              <Text style={styles.detailHeadline}>
+                PRODUCER
+              </Text>
+              <Text style={styles.detailText}>
+                {details.production_companies.map(c => c.name).join(', ')}
+              </Text>
+            </View>
+            <View style={{
+              flexDirection: 'row'
+            }}>
+              <Text style={styles.detailHeadline}>
+                BUDGET
+              </Text>
+              <Text style={styles.detailText}>
+                {parseInt(details.budget, 10).formatMoney(0)}
+              </Text>
+            </View>
+            <View style={{
+              flexDirection: 'row'
+            }}>
+              <Text style={styles.detailHeadline}>
+                REVENUE
+              </Text>
+              <Text style={styles.detailText}>
+                {parseInt(details.revenue, 10).formatMoney(0)}
+              </Text>
+            </View>
+            <View style={{
+              flexDirection: 'row'
+            }}>
+              <Text style={styles.detailHeadline}>
+                RELEASE
+              </Text>
+              <Text style={[styles.detailText, { color: colors.pink }]}>
+                {details.release_date}
+              </Text>
+            </View>
             <View style={{
               flexDirection: 'row',
               justifyContent: 'space-between'
@@ -83,31 +178,14 @@ class MoreInfoScreen extends Component {
               <View style={{
                 flexDirection: 'row'
               }}>
-              {durationBarValues.map((value, i) => <View key={i} style={{
-                width: 40 * value,
-                marginRight: 5,
-                backgroundColor: colors.yellow
-              }} />)}
               </View>
               <Text style={styles.detailText}>
-                {movie.runtime} minutes
               </Text>
-            </View>
-            <Text style={styles.detailHeadline}>
-              CAST
-            </Text>
-            <View>
-              {movie.abridged_cast.map((actor, i) => <View key={`actor${i}`}>
-                <Text style={styles.detailText}>
-                  <Text style={{ fontWeight: 'bold' }}>{actor.name}</Text>
-                  <Text> as </Text>
-                  <Text style={{ fontWeight: 'bold' }}>{actor.characters[0]}</Text>
-                </Text>
-              </View>)}
             </View>
           </View>
         </View>
       </ParallaxScrollView>
+      </View>
     );
   }
 }
@@ -130,22 +208,30 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    backgroundColor: colors.yellow
+    backgroundColor: colors.black,
+    flexDirection: 'row'
   },
   titleText: {
-    marginVertical: 20,
+    marginBottom: 20,
     marginLeft: 30,
-    fontWeight: '900',
     fontSize: 17,
-    color: colors.red1
+    color: colors.white
+  },
+  titleMeta: {
+    fontSize: 12,
+    color: colors.gray,
+    paddingRight: 10,
+    fontWeight: '100'
   },
   detailHeadline: {
-    color: colors.yellow,
+    color: colors.gray,
     fontWeight: '700',
-    marginVertical: 10,
+    marginTop: 5,
   },
   detailText: {
-    color: colors.yellow
+    color: colors.white,
+    marginTop: 5,
+    marginLeft: 15
   }
 });
 
