@@ -1,20 +1,21 @@
 import * as types from './actionTypes';
-import db from '../../services/firebase';
+import fbService from '../../services/firebase';
 import { AsyncStorage } from 'react-native';
 
-export function fetchFromFirebase() {
+export function connectToFirebase() {
   return async function(dispatch, getState) {
     try {
-      const userId = await AsyncStorage.getItem('userId');
-      const userRef = db.child(userId);
-      dispatch({type: types.FIREBASE_MOVIES_FETCHING});
-      const userRatingsCollection = await userRef.once('value');
-      if(userRatingsCollection) {
-        dispatch({type: types.FIREBASE_MOVIES_FETCHED, userRatingsCollection})
-      }
+      dispatch({type: types.FIREBASE_CONNECT_LOADING});
+      fbService.connect()
+      console.warn("Hi")
+      const users = await fbService.db.ref('users').once('value');
+      fbService.listenToChanges('users', (users) => {
+        console.warn("Hello")
+        dispatch({type: types.FIREBASE_DATA_CHANGED, users})
+      })
+      dispatch({type: types.FIREBASE_CONNECT_SUCCESS, users});
     } catch (err) {
-      console.warn(err);
-      dispatch({type: types.FIREBASE_MOVIES_FETCH_FAILED, err})
+      dispatch({type: types.FIREBASE_CONNECT_FAILURE, err})
     }
   }
 }

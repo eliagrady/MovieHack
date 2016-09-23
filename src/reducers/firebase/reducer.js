@@ -3,35 +3,37 @@ import Immutable from 'seamless-immutable';
 import _ from 'lodash';
 
 const initialState = Immutable({
-  syncStatus: 'default',
-  userRatings: {},
-  userRatingsCollection: {}
+  isLoading: false,
+  connected: false,
+  failure: undefined,
+
+  users: {},
 });
 
 export default function counter(state = initialState, action = {}) {
   switch (action.type) {
-    case types.FIREBASE_MOVIES_FETCHING:
+    case types.FIREBASE_CONNECT_LOADING:
       return state.merge({
-        syncStatus: 'fetching'
+        isLoading: true,
       });
-    case types.FIREBASE_MOVIES_FETCHED:
+
+    case types.FIREBASE_CONNECT_SUCCESS:
       return state.merge({
-        userRatings: action.userRatings,
-        userRatingsCollection: action.userRatingsCollection,
-        syncStatus: 'fetched'
+        isLoading: false,
+        connected: true,
       });
-    case types.FIREBASE_MOVIES_FETCH_FAILED:
+
+    case types.FIREBASE_CONNECT_FAILURE:
       return state.merge({
-        syncStatus: 'failed'
+        isLoading: false,
+        failure: action.err,
       });
-    case types.FIREBASE_MOVIES_SAVING:
+
+    case types.FIREBASE_DATA_CHANGED:
       return state.merge({
-        syncStatus: 'syncing'
+        users: action.users,
       });
-    case types.FIREBASE_MOVIES_SAVED:
-      return state.merge({
-        syncStatus: 'synced'
-      });
+
     default:
       return state;
   }
