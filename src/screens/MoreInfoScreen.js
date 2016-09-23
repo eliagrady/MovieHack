@@ -215,14 +215,22 @@ class MoreInfoScreen extends Component {
             {youtubeTrailers.length > 0 && <Text style={[styles.detailHeadline, { alignSelf: 'center', marginBottom: 20 }]}>
               TRAILERS
             </Text>}
-            {youtubeTrailers.map(trailer => (
-              <WebView
-                key={trailer}
-                style={{height: 200, marginBottom: 30}}
-                javaScriptEnabled={true}
-                source={{uri: trailer}}
-              />
-            ))}
+            <ScrollView horizontal={true}
+                        pagingEnabled={true}
+                        style={{ height: 200, width: posterWidth - 40  }}
+                        contentContainerStyle={[
+                          { width: youtubeTrailers.length * (posterWidth - 40) }
+                        ]}
+            >
+              {youtubeTrailers.map(trailer => (
+                <WebView
+                  key={trailer}
+                  style={{height: 200, marginBottom: 30}}
+                  javaScriptEnabled={true}
+                  source={{uri: trailer}}
+                />
+              ))}
+            </ScrollView>
           </View>
         </View>
       </ParallaxScrollView>
