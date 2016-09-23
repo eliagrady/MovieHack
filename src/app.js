@@ -40,6 +40,7 @@ export default class App {
           label: 'To Watch',
           screen: 'MovieHack.ToWatchTabScreen',
           title: 'To Watch',
+          navigatorStyle: darkNavigatorStyle,
         },
         {
           label: 'Test More Info Movie',
