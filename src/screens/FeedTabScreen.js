@@ -35,7 +35,7 @@ class FeedTabScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(feedActions.fetchMoviesAction())
+    this.props.dispatch(feedActions.fetchMoviesAction());
   }
 
   render() {
@@ -59,6 +59,7 @@ class FeedTabScreen extends Component {
         // contentInset={{top: 60}}
         // contentOffset={{y: -60}}
       >
+        <Text>User: { JSON.stringify(this.props.firebase) }</Text>
         {
           _.map(this.props.feed.movies, (movie) => {
             return (
