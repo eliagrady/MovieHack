@@ -47,7 +47,7 @@ export default class App {
           icon: require('../assets/icons/toWatch.png'),
 
           navigatorStyle: darkNavigatorStyle,
-        },
+        }
       ],
       navigatorStyle: darkNavigatorStyle,
       tabsStyle: darkTabBarStyle,

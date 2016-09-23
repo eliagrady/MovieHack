@@ -50,14 +50,23 @@ class MoreInfoScreen extends Component {
     this.state = {
 
     };
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
 
   static propTypes = {
-    movieId: PropTypes.string
+    movieId: PropTypes.number
   }
 
   componentDidMount() {
     this.props.dispatch(detailsActions.fetchMovieDetailsAction(this.props.movieId || 271110))
+  }
+
+  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+    if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
+      if (event.id == 'cancel') { // this is the same id field from the static navigatorButtons definition
+        this.props.navigator.dismissModal();
+      }
+    }
   }
 
   render() {
