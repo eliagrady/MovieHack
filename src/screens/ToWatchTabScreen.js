@@ -11,6 +11,7 @@ import {
 
 import {connect} from 'react-redux';
 import * as toWatchActions from '../reducers/toWatch/actions';
+import * as types from '../reducers/toWatch/actionTypes';
 import _ from 'lodash';
 import LoadingView from '../components/LoadingView';
 import ToWatchView from '../components/ToWatchView';
@@ -42,6 +43,7 @@ class ToWatchTabScreen extends Component {
           _.map(this.props.toWatch.movies, (movie) => {
             return (
               <ToWatchView
+                onSwipeEvent={(movie) => this.props.dispatch({type: types.TO_WATCH_INTERACTED, movie})}
                 navigator={this.props.navigator}
                 key={movie.id}
                 movie={movie}
