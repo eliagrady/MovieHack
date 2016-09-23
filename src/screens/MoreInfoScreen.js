@@ -52,8 +52,12 @@ class MoreInfoScreen extends Component {
     };
   }
 
+  static propTypes = {
+    movieId: PropTypes.string
+  }
+
   componentDidMount() {
-    this.props.dispatch(detailsActions.fetchMovieDetailsAction(271110))
+    this.props.dispatch(detailsActions.fetchMovieDetailsAction(this.props.movieId || 271110))
   }
 
   render() {
