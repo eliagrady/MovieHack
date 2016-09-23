@@ -33,7 +33,7 @@ export default class MovieView extends Component {
     return (
       <TouchableOpacity onPress={this._showMoreInfo.bind(this)}>
       <SwipeView
-        onSwipedOut={(event) => this.props.onSwipeEvent()}
+        onSwipedOut={(event) => this.props.onSwipeEvent(this.props.movie)}
         style={styles.item}
       >
           <View style={{
