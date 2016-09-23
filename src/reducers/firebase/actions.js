@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import fbService from '../../services/firebase';
+import { fbService } from '../../services/firebase';
 import { AsyncStorage } from 'react-native';
 
 export function connectToFirebase() {
@@ -7,14 +7,13 @@ export function connectToFirebase() {
     try {
       dispatch({type: types.FIREBASE_CONNECT_LOADING});
       fbService.connect()
-      console.warn("Hi")
       const users = await fbService.db.ref('users').once('value');
       fbService.listenToChanges('users', (users) => {
-        console.warn("Hello")
         dispatch({type: types.FIREBASE_DATA_CHANGED, users})
       })
       dispatch({type: types.FIREBASE_CONNECT_SUCCESS, users});
     } catch (err) {
+      console.error(err, 'Some error at firebase')
       dispatch({type: types.FIREBASE_CONNECT_FAILURE, err})
     }
   }

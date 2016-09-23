@@ -15,13 +15,12 @@ class FirebaseService {
   }
 
   connect() {
-    this.app = firebase.initializeApp(config, 'MovieHack');
-    this.db = this.app.database()
+    this.app = firebase.initializeApp(config);
+    this.db =  firebase.database()
   }
 
   listenToChanges(refPath, listener) {
     this.db.ref(refPath).on('value', (snapshot) => {
-      console.warn("Hello")
       listener(snapshot.val());
     })
   }

@@ -33,7 +33,9 @@ export default class MovieView extends Component {
     onSwipeEvent: PropTypes.func
   };
 
-  componentDidUpdate() {
+  componentDidUpdate(preProps, nowProps) {
+    // console.warn(preProps);
+    // console.warn(nowProps);
     this.state.bounceValue.setValue(1.2);
     Animated.spring(this.state.bounceValue, {
       toValue: 1,
