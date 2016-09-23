@@ -35,10 +35,12 @@ export default class App {
           screen: 'MovieHack.FeedTabScreen',
           title: 'Movies Feed',
 
+          icon: require('../assets/icons/feed.png'),
+
           navigatorStyle: darkNavigatorStyle,
         },
         {
-          label: 'My Watch List',
+          label: 'To Watch',
           screen: 'MovieHack.ToWatchTabScreen',
           title: 'To Watch',
           navigatorStyle: darkNavigatorStyle,
@@ -79,6 +81,6 @@ const darkNavigatorStyle = {
 const darkTabBarStyle = {
   tabBarBackgroundColor: '#000000',
   tabBarButtonColor: '#ccc',
-  tabBarSelectedButtonColor: '#fff',
+  tabBarSelectedButtonColor: '#be572c',
   statusBarTextColorScheme: 'light'
 };
