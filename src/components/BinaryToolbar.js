@@ -28,10 +28,11 @@ export default class BinaryToolbar extends Component {
   };
 
   render() {
+    //        // <Image style={{width: 40, height: 50}} source={require('../../assets/dislike.png')} />
+            // <Image style={{width: 40, height: 50}} source={require('../../assets/like.png')} />
     return (
       <View style={styles.container}>
-        <Image style={{width: 40, height: 50}} source={require('../../assets/dislike.png')} />
-        <Image style={{width: 40, height: 50}} source={require('../../assets/like.png')} />
+
       </View>
     );
   }
