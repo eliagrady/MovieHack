@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import {SwipeView} from 'react-native-swipe-view';
+import BinaryToolbar from './BinaryToolbar';
 import * as config from '../config';
 
 const {height, width} = Dimensions.get('window');
@@ -63,6 +64,7 @@ export default class MovieView extends Component {
             />
           </View>
         </SwipeView>
+        <BinaryToolbar onClick={(userDidLike) => this.props.onSwipeEvent(this.props.movie, userDidLike)}/>
       </Animated.View>
     );
   }
