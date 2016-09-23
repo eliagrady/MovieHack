@@ -16,7 +16,6 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import * as detailsActions from '../reducers/details/actions';
 import {connect} from 'react-redux';
 import LoadingView from '../components/LoadingView';
-import NetflixLogo  from '../../assets/netflix@2x.jpg';
 
 import * as config from '../config';
 const colors = {
