@@ -63,6 +63,7 @@ class FeedTabScreen extends Component {
           _.map(this.props.feed.movies, (movie) => {
             return (
               <MovieView
+                style={{borderWidth: 0}}
                 key={movie.id}
                 movie={movie}
                 navigator={this.props.navigator}
