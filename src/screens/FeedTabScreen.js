@@ -48,6 +48,7 @@ class FeedTabScreen extends Component {
     }
 
     else if (this.props.feed.err) {
+      console.error(this.props.feed.err);
       Alert.alert("Oh Oh, there was a terrible error...", JSON.stringify(this.props.feed.err))
     }
 
