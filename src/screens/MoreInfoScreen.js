@@ -8,7 +8,8 @@ import {
   Alert,
   Platform,
   Dimensions,
-  Image
+  Image,
+  WebView,
 } from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import * as detailsActions from '../reducers/details/actions';
@@ -59,13 +60,15 @@ class MoreInfoScreen extends Component {
     if (!this.props.details || this.props.details.isLoading || !this.props.details.details) {
       return (
         <View>
-          <Text>{JSON.stringify(this.props.details)}</Text>
           <LoadingView />
         </View>
       );
     }
 
     let details = this.props.details.details;
+    let youtubeTrailers = (details.videos.results || [])
+      .filter(vid => vid.site === 'YouTube' && vid.type === 'Trailer')
+      .map(vid =>  `https://www.youtube.com/embed/${vid.key}?rel=0&autoplay=0&showinfo=0&controls=0`);
 
     return (
       <View
@@ -183,6 +186,7 @@ class MoreInfoScreen extends Component {
               </Text>
             </View>
             <View style={{
+              paddingVertical: 5,
               backgroundColor: '#2B2B2B',
               alignItems: 'center',
 
@@ -205,9 +209,20 @@ class MoreInfoScreen extends Component {
             }}>
               {`<<${details.tagline}>>`}
             </Text>
-            <Text style={{ color: colors.gray, marginLeft: 0,  alignSelf: 'center', textAlign: 'center' }}>
+            <Text style={{ color: colors.gray, marginLeft: 0,  alignSelf: 'center', textAlign: 'center', marginBottom: 15 }}>
               {details.overview}
             </Text>
+            {youtubeTrailers.length > 0 && <Text style={[styles.detailHeadline, { alignSelf: 'center', marginBottom: 20 }]}>
+              TRAILERS
+            </Text>}
+            {youtubeTrailers.map(trailer => (
+              <WebView
+                key={trailer}
+                style={{height: 200, marginBottom: 30}}
+                javaScriptEnabled={true}
+                source={{uri: trailer}}
+              />
+            ))}
           </View>
         </View>
       </ParallaxScrollView>
