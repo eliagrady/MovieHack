@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  TouchableHighlight,
   StyleSheet,
   Alert,
   Platform,
@@ -15,6 +16,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import * as detailsActions from '../reducers/details/actions';
 import {connect} from 'react-redux';
 import LoadingView from '../components/LoadingView';
+import NetflixLogo  from '../../assets/netflix@2x.jpg';
 
 import * as config from '../config';
 const colors = {
@@ -228,7 +230,7 @@ class MoreInfoScreen extends Component {
             {youtubeTrailers.length > 0 && <Text style={[styles.detailHeadline, { alignSelf: 'center', marginBottom: 20 }]}>
               TRAILERS
             </Text>}
-            <ScrollView horizontal={true}
+            {youtubeTrailers.length > 0 && <ScrollView horizontal={true}
                         pagingEnabled={true}
                         style={{ height: 200, width: posterWidth - 40, marginBottom: 30  }}
                         contentContainerStyle={[
@@ -243,7 +245,22 @@ class MoreInfoScreen extends Component {
                   source={{uri: trailer}}
                 />
               ))}
-            </ScrollView>
+            </ScrollView>}
+            <TouchableHighlight
+              underlayColor={'#EE3425'}
+              style={{
+              height: 40,
+              backgroundColor: '#C01A00',
+              padding: 10,
+              marginBottom: 30,
+              alignItems: 'center',
+              marginHorizontal: 30
+            }}>
+              <Text style={{
+                color: 'white',
+                fontWeight: '900',
+              }}>WATCH ON NETFLIX NOW</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </ParallaxScrollView>
