@@ -15,13 +15,13 @@ export default function counter(state = initialState, action = {}) {
         {
           isLoading: true,
         }
-      )
+      );
 
     case types.FETCH_MOVIE_DETAILS_LOADED:
       return state.merge({
         details: action.details,
         isLoading: false,
-      })
+      });
 
     case types.FETCH_MOVIE_DETAILS_FAILED:
       return state.merge(
@@ -29,7 +29,7 @@ export default function counter(state = initialState, action = {}) {
           err: action.err,
           isLoading: false,
         }
-      )
+      );
 
     default:
       return state;

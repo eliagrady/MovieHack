@@ -5,7 +5,10 @@ import android.support.annotation.NonNull;
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 
+import java.util.Arrays;
 import java.util.List;
+
+import com.wix.RNSwipeView.SwipeViewPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -19,7 +22,9 @@ public class MainApplication extends NavigationApplication {
   public List<ReactPackage> createAdditionalReactPackages() {
     // Add the packages you require here.
     // No need to add RnnPackage and MainReactPackage
-    return null;
+    return Arrays.<ReactPackage>asList(
+      new SwipeViewPackage()
+    );
   }
 
 }

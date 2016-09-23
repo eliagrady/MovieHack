@@ -71,14 +71,13 @@ class MoreInfoScreen extends Component {
   }
 
   render() {
-    if (!this.props.details || this.props.details.isLoading || !this.props.details.details) {
+    if (this.props.details.isLoading == true || this.props.details.details === undefined) {
       return (
         <View>
           <LoadingView />
         </View>
       );
     }
-
     let details = this.props.details.details;
     let youtubeTrailers = (details.videos.results || [])
       .filter(vid => vid.site === 'YouTube' && vid.type === 'Trailer')

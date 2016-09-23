@@ -76,6 +76,7 @@ export default class MovieView extends Component {
       passProps: {
         movieId: this.props.movie.id
       }, // simple serializable object that will pass as props to the modal (optional)
+      navBarTextColor: '#000000',
       navigatorButtons: {
         leftButtons: [
           {

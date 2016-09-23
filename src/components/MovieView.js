@@ -18,7 +18,6 @@ import * as config from '../config';
 
 const {height, width} = Dimensions.get('window');
 
-
 export default class MovieView extends Component {
   constructor(props) {
     super(props)
@@ -71,21 +70,26 @@ export default class MovieView extends Component {
     );
   }
 
+
   _showMoreInfo() {
+    const rightButtons = Platform.OS == "android" ? null : [
+      {
+        title: 'Cancel',
+        id: 'cancel',
+        backgroundColor: '#fff',
+        disableIconTint: true,
+      }
+    ];
+
     this.props.navigator.showModal({
       screen: "MovieHack.MoreInfoScreen", // unique ID registered with Navigation.registerScreen
       title: "Movie Info", // title of the screen as appears in the nav bar (optional)
       passProps: {
         movieId: this.props.movie.id
       }, // simple serializable object that will pass as props to the modal (optional)
+      navBarTextColor: '#000000',
       navigatorButtons: {
-        leftButtons: [
-          {
-            title: 'Cancel',
-            id: 'cancel',
-            disableIconTint: true,
-          }
-        ]
+        rightButtons
       },
       navigatorStyle: darkNavigatorStyle,
       animationType: 'slide-up'
