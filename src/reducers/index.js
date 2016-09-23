@@ -8,5 +8,6 @@ export {
   app,
   feed,
   details,
+  toWatch,
   firebase,
 }
