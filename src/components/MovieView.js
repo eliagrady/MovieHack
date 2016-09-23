@@ -55,16 +55,16 @@ export default class MovieView extends Component {
             }
           }}
         >
-          <View style={{flex: 1, padding: 24,}}>
+          <View style={{flex: 1, padding: 24,position: 'relative', borderWidth: 1, }}>
             {/* Movie Title */}
             <Text style={{marginBottom: 12, color: '#fafafa',fontSize: 20, fontFamily: 'Helvetica', fontWeight: '700'}}>{this.props.movie.title}</Text>
             <Image
               style={styles.cardImage}
               source={{uri: `${config.TMDB_POSTER_BASE}${this.props.movie.poster_path}`}}
             />
+            <BinaryToolbar style={{ position: 'absolute', left: 0, top: 0}} onClick={(userDidLike) => this.props.onSwipeEvent(this.props.movie, userDidLike)}/>
           </View>
         </SwipeView>
-        <BinaryToolbar onClick={(userDidLike) => this.props.onSwipeEvent(this.props.movie, userDidLike)}/>
       </Animated.View>
     );
   }

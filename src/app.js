@@ -25,7 +25,6 @@ registerScreens(store, Provider);
 export default class App {
   constructor() {
     store.dispatch(appActions.appInitializedAction());
-    store.dispatch(firebaseActions.connectToFirebase());
   }
 
   startApp() {

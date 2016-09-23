@@ -30,8 +30,8 @@ export default class BinaryToolbar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.props.onClick(false)}><Image style={{width: 50}} source={{uri: "https://thecinemascoredotcom.files.wordpress.com/2016/01/thumbsup.png?w=474"}} /></TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.onClick(true)}><Image style={{width: 50}} source={{uri: "http://www.clker.com/cliparts/5/2/5/8/13476359851958638477thumbs-down-icon-red-hi-md.png"}} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.onClick(true)}><Image style={{width: 40, height: 50}} source={require('../../assets/dislike.png')} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.onClick(false)}><Image style={{width: 40, height: 50}} source={require('../../assets/like.png')} /></TouchableOpacity>
       </View>
     );
   }
@@ -41,5 +41,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    position: 'absolute',
+    left: 0,
+    bottom: height/2-105,
+    right: 0,
+    // backgroundColor: 'red',
+    alignSelf: 'center',
+    justifyContent: 'center',
   }
 });
